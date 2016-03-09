@@ -6,3 +6,6 @@
 - http-server ./dist
 
 ### REFERENCES
+
+- http://survivejs.com/webpack_react/building_kanban/
+- webpack-demos github repository
