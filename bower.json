@@ -1,0 +1,20 @@
+{
+  "name": "r3sample",
+  "description": "",
+  "authors": [
+    "Sumit Hingu <sp.hingu@gmail.com>"
+  ],
+  "license": "ISC",
+  "moduleType": [
+    "es6",
+    "globals"
+  ],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

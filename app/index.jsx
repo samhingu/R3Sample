@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import { Router, Route, Link, IndexRoute, hashHistory } from 'react-router';
 
 require('./app.css');
+require('Materialize/sass/materialize.scss')
 
 var App = React.createClass({
   render: function () {
