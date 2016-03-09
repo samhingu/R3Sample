@@ -9,3 +9,4 @@
 
 - http://survivejs.com/webpack_react/building_kanban/
 - webpack-demos github repository
+- http://jamesknelson.com/simple-routing-redux-react/

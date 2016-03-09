@@ -1,66 +1,34 @@
-import React from 'react';
-import { render } from 'react-dom';
-import { Router, Route, Link, IndexRoute, hashHistory } from 'react-router';
-
 require('./app.css');
 require('Materialize/sass/materialize.scss')
 
-var App = React.createClass({
-  render: function () {
-    return (
-      <div>
-        <header>
-          <ul>
-            <li><Link to="/app">Dashboard</Link></li>
-            <li><Link to="/inbox">Inbox</Link></li>
-            <li><Link to="/calendar">Calendar</Link></li>
-          </ul>
-          Logged in as Sumit
-        </header>
-        {this.props.children}
-      </div>
-    );
-  }
-});
+import React from 'react'
+import {render} from 'react-dom'
+import {Router, Route, IndexRoute, browserHistory} from 'react-router'
+import {Provider} from 'react-redux'
+import { syncHistoryWithStore } from 'react-router-redux'
 
-var Dashboard = React.createClass({
-  render: function () {
-    return (
-      <div>
-        <p>Dashboard</p>
-      </div>
-    );
-  }
-});
+import configureStore from './store'
 
-var Inbox = React.createClass({
-  render: function () {
-    return (
-      <div>
-        <p>Inbox</p>
-      </div>
-    );
-  }
-});
+import App from './components/App'
+import TodoEdit from './containers/TodoEdit'
+import About from './components/About'
+import Contact from './components/Contact'
 
-var Calendar = React.createClass({
-  render: function () {
-    return (
-      <div>
-        <p>Calendar</p>
-      </div>
-    );
-  }
-});
+const store = configureStore()
 
-render((
-  <Router history={hashHistory}>
-    <Route path="/" component={App}>
-      <IndexRoute component={Dashboard}/>
-      <Route path="app" component={Dashboard}/>
-      <Route path="inbox" component={Inbox}/>
-      <Route path="calendar" component={Calendar}/>
-      <Route path="*" component={Dashboard}/>
-    </Route>
-  </Router>
-), document.querySelector('#root'));
+const history = syncHistoryWithStore(browserHistory, store)
+
+
+
+const routes = <Route path="/" component={App}>
+                    <IndexRoute component={About}/>
+                    <Route path="/todo" component={TodoEdit}></Route>
+                    <Route path="/about" component={About}></Route>
+                    <Route path="/Contact" component={Contact}></Route>
+                </Route>;
+
+render(
+    <Provider store={store}>
+        <Router history={history}>{routes}</Router>
+    </Provider>
+, document.getElementById('root'))
