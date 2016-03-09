@@ -24,19 +24,21 @@ module.exports = {
     },
     module: {
         loaders: [
-            { test: /\.css$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader") },
-            { test: /\.(png|jpg)$/, loader: 'url?limit=8192' },
-            { test: /\.js[x]?$/, exclude: /node_modules/, loader: 'babel', query: { presets: ['es2015', 'react'] } }
+            { test: /\.css$/, include: PATHS.app, loader: ExtractTextPlugin.extract("style-loader", "css-loader") },
+            { test: /\.(png|jpg)$/, include: PATHS.app, loader: 'url?limit=8192' },
+            { test: /\.js[x]?$/, include: PATHS.app, loader: 'babel', query: { presets: ['es2015', 'react'] } }
         ]
     },
     plugins: [
-        new CleanPlugin([PATHS.build]),
+        new CleanPlugin([PATHS.build],{
+            verbose: false
+        }),
         new HtmlWebpackPlugin({
             hash: true,
             filename: 'index.html',
             template: path.join(PATHS.app, './index.html'),
         }),
-        new ExtractTextPlugin('styles/[name].css', {
+        new ExtractTextPlugin('styles/[name].[chunkhash].css', {
             allChunks: true
         }),
         new uglifyJsPlugin({
