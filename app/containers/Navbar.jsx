@@ -1,10 +1,12 @@
 import React,{ Component } from 'react'
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 
-import * as AuthActions from '../actions/auth';
-import Login from '../components/Login';
-import Logout from '../components/Logout';
+import { loginUser, logoutUser } from '../apis/auth'
+
+import * as AuthActions from '../actions/auth'
+import Login from '../components/Login'
+import Logout from '../components/Logout'
 
 const mapStateToProps = (state) => {
     const { isAuthenticated, errorMessage } = state.auth
@@ -15,17 +17,16 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        actions: bindActionCreators(AuthActions, dispatch)
+        dispatch: dispatch
     }
 }
-
 class Navbar extends Component {
   render() {
-    const { isAuthenticated, errorMessage, actions } = this.props
-    const { loginRequest, loginReceived, loginError, logoutRequest, logoutReceived } = actions;
+    const { isAuthenticated, errorMessage, actions, dispatch } = this.props
     return <div>
-            {!isAuthenticated && <Login errorMessage={errorMessage} loginRequest={loginRequest} loginReceived={loginReceived} loginError={loginError}  /> }
-            {isAuthenticated && <Logout logoutReceived={logoutReceived} logoutRequest={logoutRequest}  />}        
+            {!isAuthenticated && <Login errorMessage={errorMessage}
+             onLoginClick={ creds => dispatch(loginUser(creds)) } /> }
+            {isAuthenticated && <Logout onLogoutClick={ creds => dispatch(logoutUser()) } />}        
            </div>
   }
 }

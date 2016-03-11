@@ -21,3 +21,10 @@
 - http://www.aaron-powell.com/posts/2015-06-08-implementing-security-in-react-with-react-router.html
 - http://wmyers.github.io/technical/react-flux/Authentication-routing-in-a-React-Flux-application/
 - http://ricostacruz.com/cheatsheets/react-router.html
+- http://www.slideshare.net/RemoJansen/react-redux-typescript
+
+
+
+### Redux-base-app
+### Redux-Blog-Example
+### React-Redux-JWT
