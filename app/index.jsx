@@ -13,17 +13,20 @@ import App from './components/App'
 import TodoEdit from './containers/TodoEdit'
 import About from './components/About'
 import Contact from './components/Contact'
+import Navbar from './containers/Navbar'
 
 const store = configureStore()
 
 const history = syncHistoryWithStore(browserHistory, store)
 
-
+// function requireAuth(nextState, replaceState, store, cb) {
+//   let state = store.getState();
+// }
 
 const routes = <Route path="/" component={App}>
                     <IndexRoute component={About}/>
-                    <Route path="/todo" component={TodoEdit}></Route>
-                    <Route path="/about" component={About}></Route>
+                    <Route path="/todo" component={TodoEdit} ></Route>
+                    <Route path="/about" component={Navbar}></Route>
                     <Route path="/Contact" component={Contact}></Route>
                 </Route>;
 
