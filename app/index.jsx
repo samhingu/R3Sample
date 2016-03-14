@@ -3,8 +3,9 @@ require('Materialize/sass/materialize.scss')
 
 import React from 'react'
 import {render} from 'react-dom'
-import {Router, Route, IndexRoute, browserHistory} from 'react-router'
+import {Router, Route, IndexRoute, useRouterHistory} from 'react-router'
 import {Provider} from 'react-redux'
+import { createHashHistory } from 'history'
 import { syncHistoryWithStore } from 'react-router-redux'
 
 import configureStore from './store'
@@ -17,8 +18,8 @@ import Navbar from './containers/Navbar'
 import Leads from './containers/Leads'
 
 const store = configureStore()
-
-const history = syncHistoryWithStore(browserHistory, store)
+const history1 = useRouterHistory(createHashHistory)({ queryKey: false })
+const history = syncHistoryWithStore(history1, store)
 
 // function requireAuth(nextState, replaceState, store, cb) {
 //   let state = store.getState();
