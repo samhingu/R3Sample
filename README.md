@@ -22,9 +22,13 @@
 - http://wmyers.github.io/technical/react-flux/Authentication-routing-in-a-React-Flux-application/
 - http://ricostacruz.com/cheatsheets/react-router.html
 - http://www.slideshare.net/RemoJansen/react-redux-typescript
-
-
+- http://engineering.wework.com/process/2015/10/01/react-reflux-to-redux/
+- https://github.com/reactjs/redux/issues/291
+## TODO
+- redux-api package
+- https://github.com/agraboso/redux-api-middleware
 
 ### Redux-base-app
 ### Redux-Blog-Example
 ### React-Redux-JWT
+### REDUX-AUTH(api)

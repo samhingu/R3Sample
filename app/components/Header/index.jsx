@@ -11,7 +11,7 @@ export default class Header extends Component {
                             <a href="#" className="brand-logo">  </a>
                             <ul id="nav-menu" className="right">
                                 <li><Link to="/todo"><i className="fa fa-user-secret left"></i>Admin</Link></li>
-                                <li><Link to="/contact"><i className="fa fa-user-users left"></i>Leads</Link></li>
+                                <li><Link to="/leads"><i className="fa fa-user-users left"></i>Leads</Link></li>
                                 <li><Link to="/about"><i className="fa fa-user-calendar left"></i>Events</Link></li>
                                 <li><Link to="/contact"><i className="fa fa-user-bullhorn left"></i>Complaint</Link></li>
                                 <li><Link to="/about"><i className="fa fa-user-clipboard left"></i>Survey</Link></li>

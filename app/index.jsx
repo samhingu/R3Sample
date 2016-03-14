@@ -14,6 +14,7 @@ import TodoEdit from './containers/TodoEdit'
 import About from './components/About'
 import Contact from './components/Contact'
 import Navbar from './containers/Navbar'
+import Leads from './containers/Leads'
 
 const store = configureStore()
 
@@ -24,7 +25,8 @@ const history = syncHistoryWithStore(browserHistory, store)
 // }
 
 const routes = <Route path="/" component={App}>
-                    <IndexRoute component={About}/>
+                    <IndexRoute component={Leads}/>
+                    <Route path="/leads" component={Leads} ></Route>
                     <Route path="/todo" component={TodoEdit} ></Route>
                     <Route path="/about" component={Navbar}></Route>
                     <Route path="/Contact" component={Contact}></Route>
