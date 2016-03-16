@@ -1,7 +1,7 @@
 import { handleActions } from 'redux-actions';
 
 const initialState = [];
-for(let i=1;i<100;i++){
+for(let i=1;i<10;i++){
     initialState.push({
         text: 'Testing on React Redux architecture',
         completed: false,

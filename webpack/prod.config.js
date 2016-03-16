@@ -61,8 +61,8 @@ module.exports = {
         // DefinePlugin replaces content "as is" so we need some extra quotes
         // for the generated code to make sense
         new webpack.DefinePlugin({
-            'process.env.NODE_ENV': '"production"'
-
+            'process.env.NODE_ENV': '"production"',
+            __API_URL__ : '"http://localhost:49756/"'
             // You can set this to JSON.stringify('development') for your
             // development target to force NODE_ENV to development mode
             // no matter what

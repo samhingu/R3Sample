@@ -1,43 +1,27 @@
-import { handleActions } from 'redux-actions'
+import * as types from '../constants/LeadActionTypes'
+
 const initialState = {
     isFetching: false,
-    isAuthenticated: localStorage.getItem('id_token') ? true : false,
+    errorMessage: '',
+    isAuthenticated: localStorage.getItem('id_token') ? true : true,
     userName: localStorage.getItem('username') ? localStorage.getItem('username') : ''
 }
 
-export default handleActions({
-    'login request'(state, action) {
-        return Object.assign({}, state, {
-            isFetching: true,
-            isAuthenticated: false,
-            errorMessage: ''
-        })
-    },
-    'login received'(state, action) {
-        return Object.assign({}, state, {
-            isFetching: false,
-            isAuthenticated: true,
-            errorMessage: '',
-            userName: localStorage.getItem('username') ? localStorage.getItem('username') : ''
-        })
-    },
-    'login error'(state, action) {
-        return Object.assign({}, state, {
-            isFetching: false,
-            isAuthenticated: false,
-            errorMessage: action.payload
-        })
-    },
-    'logout request'(state, action) {
-         return Object.assign({}, state, {
-            isFetching: true,
-            isAuthenticated: true
-        })
-    },
-    'logout received'(state, action) {
-         return Object.assign({}, state, {
-            isFetching: false,
-            isAuthenticated: false
-        })
-    }    
-}, initialState)
+
+const auth = (state = initialState, action) => {
+    switch (action.type) {
+        case types.LOGIN_REQUEST:
+            return { ...state, isFetching: true, errorMessage: '' }
+        case types.LOGIN_SUCCESS:
+            return {...state, isFetching: false, isAuthenticated: true, userName: localStorage.getItem('username') ? localStorage.getItem('username') : '' }
+        case types.LOGIN_ERROR:
+            return {...state, isFetching: false, errorMessage: action.message }
+        case types.LOGOUT_REQUEST:
+            return { ...state, isFetching: true, errorMessage: '' }
+        case types.LOGOUT_SUCCESS:
+            return {...state, isFetching: false, isAuthenticated: false }
+        default:
+            return state
+    }
+}
+export default auth

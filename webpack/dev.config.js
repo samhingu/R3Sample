@@ -49,7 +49,8 @@ module.exports = {
         }),
         new webpack.optimize.CommonsChunkPlugin(/* chunkName= */'vendor', /* filename= */'vendor.js'),
         new webpack.DefinePlugin({
-            'process.env.NODE_ENV': '"development"'
+            'process.env.NODE_ENV': '"development"',
+            __API_URL__ : '"http://localhost:49756/"'
         })
     ]
 };

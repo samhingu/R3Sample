@@ -16,6 +16,7 @@ import About from './components/About'
 import Contact from './components/Contact'
 import Navbar from './containers/Navbar'
 import Leads from './containers/Leads'
+import DevTools from './containers/DevTools'
 
 const store = configureStore()
 const history1 = useRouterHistory(createHashHistory)({ queryKey: false })
@@ -33,8 +34,9 @@ const routes = <Route path="/" component={App}>
                     <Route path="/Contact" component={Contact}></Route>
                 </Route>;
 
-render(
+render(<div>
     <Provider store={store}>
         <Router history={history}>{routes}</Router>
     </Provider>
+    <DevTools store={store} /></div>
 , document.getElementById('root'))

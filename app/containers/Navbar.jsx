@@ -1,7 +1,8 @@
 import React,{ Component } from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
-import { loginUser, logoutUser } from '../apis/auth'
+import * as AuthActions from '../actions/auth'
 
 import Login from '../components/Login'
 import Logout from '../components/Logout'
@@ -15,17 +16,19 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        dispatch: dispatch
+        actions: bindActionCreators(AuthActions, dispatch)
     }
 }
 class Navbar extends Component {
   render() {
-    const { isAuthenticated, errorMessage, dispatch } = this.props
-    return <div>
-            {!isAuthenticated && <Login errorMessage={errorMessage}
-             onLoginClick={ creds => dispatch(loginUser(creds)) } /> }
-            {isAuthenticated && <Logout onLogoutClick={ creds => dispatch(logoutUser()) } />}        
+    const { isAuthenticated, errorMessage, actions } = this.props
+    
+    return (
+        <div>
+            {!isAuthenticated && <Login errorMessage={errorMessage} onLoginClick={ creds => actions.login(creds) } /> }
+            {isAuthenticated && <Logout onLogoutClick={ () => actions.logout() } />}        
            </div>
+    )
   }
 }
 
