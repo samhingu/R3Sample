@@ -2,26 +2,37 @@ import React, {Component} from 'react';
 import { Link } from 'react-router'
 
 export default class Header extends Component {
+    getAppLinks(isAuthenticated){
+        if(!isAuthenticated){
+            return
+        }
+            
+        return <div className="left menu">
+            <Link className="item" to="/todo">Admin</Link>
+            <Link className="item" to="/leads">lead</Link>
+            <Link className="item" to="/about">about</Link>
+            <Link className="item" to="/contact">Contact</Link>
+            <Link className="item" to="/about">about</Link>
+            <Link className="item" to="/contact">contact</Link>
+            </div>
+    }
     render(){
+        const { isAuthenticated } = this.props
         return (
             <header>
                 <nav>
-                    <div className="wrapper">
-                        <div className="nav-wrapper"> 
-                            <a href="#" className="brand-logo">  </a>
-                            <ul id="nav-menu" className="right">
-                                <li><Link to="/todo"><i className="fa fa-user-secret left"></i>Admin</Link></li>
-                                <li><Link to="/leads"><i className="fa fa-user-users left"></i>Leads</Link></li>
-                                <li><Link to="/about"><i className="fa fa-user-calendar left"></i>Events</Link></li>
-                                <li><Link to="/contact"><i className="fa fa-user-bullhorn left"></i>Complaint</Link></li>
-                                <li><Link to="/about"><i className="fa fa-user-clipboard left"></i>Survey</Link></li>
-                                <li><Link to="/contact"><i className="fa fa-user-line-chart left"></i>Reports</Link></li>
-                            </ul>
-                            <a href="#" data-activates="nav-menu" className="button-collapse"><i className="material-icons">menu</i></a> 
-                        </div>
+                 <div className="ui large top fixed hidden menu">
+                    {this.getAppLinks(isAuthenticated)}
+                    <div className="right menu">
+                    <div className="item">
+                        <Link className="ui primary button" to="/about">{isAuthenticated ? 'Log out': 'Log in'}</Link>
                     </div>
+                    </div>
+                  </div>
                 </nav>
             </header>
         )
     }
-};
+}
+
+

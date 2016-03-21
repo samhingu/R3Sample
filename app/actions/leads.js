@@ -2,7 +2,7 @@ import * as types from '../constants/LeadActionTypes'
 //import fetch from 'isomorphic-fetch'
 
 const apiUrl = __API_URL__
-const leadApiUrl = apiUrl + '/lead'
+const leadApiUrl = apiUrl + 'lead'
 const checkStatus = (response) => {
     if (response.status >= 200 && response.status < 300) {
         return response
@@ -36,13 +36,13 @@ const getLeadsRequest = () => {
 export const getLeads = () => {
     return (dispatch, getState) => {
         dispatch(getLeadsRequest())
-        setTimeout(function() {
-            fetch(leadApiUrl, { headers: { 'Accept': 'application/json' } })
+            fetch(leadApiUrl, {
+                 headers:{'Authorization': `Bearer ${localStorage.getItem('accessToken')}`}
+             })
                 .then(checkStatus)
                 .then(parseJSON)
                 .then(data => { dispatch(getLeadsSuccess(data)); })
                 .catch(error => { dispatch(getLeadsError(error.message)) })
-        }, 2000)
     }
 }
 
@@ -67,18 +67,16 @@ const addLeadRequest = () => {
 export const addLead = (text) => {
     return (dispatch, getState) => {
         dispatch(addLeadRequest())
-        setTimeout(function() {
             fetch(leadApiUrl, {
                 method: 'post',
                 headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
                 },
                 body: JSON.stringify({ title: text })
             }).then(checkStatus).then(parseJSON)
                 .then(data => { dispatch(addLeadSuccess(data)); })
                 .catch(error => { dispatch(addLeadError(error.message)) })
-        }, 2000)
     }
 }
 
@@ -103,16 +101,15 @@ const removeLeadRequest = () => {
 export const removeLead = (id) => {
     return (dispatch, getState) => {
         dispatch(removeLeadRequest())
-        setTimeout(function() {
             fetch(leadApiUrl, {
                 method: 'delete',
                 headers: {
                     'Accept': 'application/json',
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
                 },
                 body: JSON.stringify({ id: id })
             }).then(checkStatus).then(data => { dispatch(removeLeadSuccess(id)); })
                 .catch(error => { dispatch(removeLeadError(error.message)) })
-        }, 2000)
     }
 }

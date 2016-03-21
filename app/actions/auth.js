@@ -2,7 +2,7 @@ import * as types from '../constants/AuthActionTypes'
 //import fetch from 'isomorphic-fetch'
 
 const apiUrl = __API_URL__
-const authApiUrl = apiUrl + 'auth'
+const authApiUrl = apiUrl + 'login'
 const checkStatus = (response) => {
     if (response.status >= 200 && response.status < 300) {
         return response
@@ -33,16 +33,26 @@ const loginRequest = () => {
     }
 }
 
-export const login = (user) => {
+export const login = (creds) => {
     return (dispatch, getState) => {
         dispatch(loginRequest())
-        setTimeout(function() {
-            fetch(authApiUrl, { headers: { 'Accept': 'application/json' } })
+            const config = {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(creds) 
+            }
+            fetch(authApiUrl, config)
                 .then(checkStatus)
                 .then(parseJSON)
-                .then(data => { dispatch(loginSuccess(data)); })
+                .then(data => {
+                    localStorage.setItem('accessToken',data.accessToken)
+                    localStorage.setItem('username',data.userName)
+                    dispatch(loginSuccess(data))
+                })
                 .catch(error => { dispatch(loginError(error.message)) })
-        }, 2000)
     }
 }
 
@@ -60,9 +70,8 @@ const logoutRequest = () => {
 export const logout = () => {
     return (dispatch, getState) => {
         dispatch(loginRequest())
-        setTimeout(function() {
-            localStorage.removeItem('id_token')
+            localStorage.removeItem('accessToken')
+            localStorage.removeItem('username')
             dispatch(logoutSuccess())
-        }, 2000)
     }
 }

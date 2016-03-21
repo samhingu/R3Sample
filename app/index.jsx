@@ -1,16 +1,18 @@
+require('semantic/dist/semantic.css')
 require('./app.css');
-require('Materialize/sass/materialize.scss')
+//require('Materialize/sass/materialize.scss')
 
 import React from 'react'
 import {render} from 'react-dom'
-import {Router, Route, IndexRoute, useRouterHistory} from 'react-router'
+import {Router, Route, IndexRoute, browserHistory, useRouterHistory} from 'react-router'
 import {Provider} from 'react-redux'
 import { createHashHistory } from 'history'
-import { syncHistoryWithStore } from 'react-router-redux'
+import { syncHistory, syncHistoryWithStore, routeActions } from 'react-router-redux'
+import { UserAuthWrapper } from 'redux-auth-wrapper'
 
 import configureStore from './store'
 
-import App from './components/App'
+import App from './components/App';
 import TodoEdit from './containers/TodoEdit'
 import About from './components/About'
 import Contact from './components/Contact'
@@ -22,9 +24,7 @@ const store = configureStore()
 const history1 = useRouterHistory(createHashHistory)({ queryKey: false })
 const history = syncHistoryWithStore(history1, store)
 
-// function requireAuth(nextState, replaceState, store, cb) {
-//   let state = store.getState();
-// }
+
 
 const routes = <Route path="/" component={App}>
                     <IndexRoute component={Leads}/>

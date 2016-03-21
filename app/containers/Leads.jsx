@@ -25,26 +25,29 @@ class Leads extends Component {
         const {leadName} = this.refs
         actions.addLead(leadName.value)
     }
-    handleFileClick(e) {
-        // debugger
-        // e.preventDefault()
-        // const { fields } = this.props
-        // // convert files to an array
-        // const files = [...e.target.files]
-        // debugger
-        // //fields.yourField.handleChange(files)
-    }
     render() {
         const { isAuthenticated, leads, errorMessage, isFetching, actions } = this.props
         return (<div>
-            <input ref="fileToGet"  type="file" onChange={:: this.handleFileClick} />
-            <ul>
-                {leads.map(lead => <li key={lead.id}>
-                    <b>Id</b> {lead.id} <b>Name</b> {lead.title} <b>Event Count</b> {lead.order}
-                    <button disabled={isFetching} onClick={() => actions.removeLead(lead.id)}>X</button>
-                        </li>
-                ) }
-            </ul>
+        {!!leads.length &&
+        <table className="ui orange table">
+            <thead>
+                <tr><th>Id</th>
+                <th>Name</th>
+                <th>Event Count</th>
+                <th></th>
+            </tr></thead>
+            <tbody>
+             {leads.map(lead =>
+             <tr key={lead.id}>
+                <td>{lead.id}</td>
+                <td>{lead.title}</td>
+                <td>{lead.order}</td>
+                <td><button disabled={isFetching} onClick={() => actions.removeLead(lead.id)}>X</button></td>
+                </tr>
+             ) }
+            </tbody>
+         </table>}
+         {!leads.length && <p>No Leads Found</p>}
             <p style={{ color: 'red' }}>{errorMessage}</p>
             {isFetching && <p style={{ color: 'green' }}>Loading</p>}
 

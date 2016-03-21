@@ -1,7 +1,8 @@
-body
-{
-    background-color: gray;
-}
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic&subset=latin');
+
 h1{
     background-color: silver;
 }
+  .ui.container {
+      margin-top: 5em;
+    }

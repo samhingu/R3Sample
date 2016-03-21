@@ -1,15 +1,25 @@
+## Required Softwares
+- Node ( 5.7.0 )
+- NPM ( 3.3.3 )
+- Bower ( 1.7.7 )
+----------
+> WebSite URL : http://localhost:8080
+ 
+----------
+> WebSite URL for Live Reload : http://localhost:8080/webpack-dev-server/bundle
 
-- npm i -g webpack webpack-dev-server
-- npm start
-- npm deploy
-- http-server ./dist
+## REFERENCES
+- REDUX Architecture : http://chaosbuffalogames.com/blog/react-redux-todo-list-ported-to-kivy.html
+- http://reactjsnews.com/your-first-redux-app/
+- http://teropa.info/blog/2015/09/10/full-stack-redux-tutorial.html
+- https://blog.risingstack.com/react-js-best-practices-for-2016/
+- https://facebook.github.io/react/docs/thinking-in-react.html
+- http://blog.madewithlove.be/post/webpack-your-bags/
 
-## React POC functionalities
-1. List with Search 
-2. Add, Update, Delete
-3. File Upload
-4. Calendar
-5. Login/ Logout
+http://www.jchapron.com/2015/08/14/getting-started-with-redux/
+
+https://ryandurk.com/blog/build-a-static-site-webpack-tutorial
+https://github.com/NekR/offline-plugin/issues/12
 
 ### REFERENCES
 
@@ -26,6 +36,7 @@
 - https://github.com/reactjs/redux/issues/291
 - https://github.com/martijnboland/VSReact
 - https://github.com/mjrussell/redux-auth-wrapper
+- https://github.com/joshgeller/react-redux-jwt-auth-example
 ### JWT In .Net
 - https://github.com/tjoudeh/JWTAspNetWebApi
 - http://blog.asteropesystems.com/securing-web-api-requests-with-json-web-tokens/
@@ -34,9 +45,9 @@
 - http://bitoftech.net/2014/10/27/json-web-token-asp-net-web-api-2-jwt-owin-authorization-server/
 ## TODO
 - redux-api package
+- react-addons-test-utils
 - https://github.com/agraboso/redux-api-middleware
-
-### Redux-base-app
-### Redux-Blog-Example
-### React-Redux-JWT
-### REDUX-AUTH(api)
+- Redux-base-app
+- Redux-Blog-Example
+- React-Redux-JWT
+- REDUX-AUTH(api)

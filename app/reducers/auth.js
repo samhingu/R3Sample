@@ -1,9 +1,9 @@
-import * as types from '../constants/LeadActionTypes'
+import * as types from '../constants/AuthActionTypes'
 
 const initialState = {
     isFetching: false,
     errorMessage: '',
-    isAuthenticated: localStorage.getItem('id_token') ? true : true,
+    isAuthenticated: localStorage.getItem('accessToken') ? true : false,
     userName: localStorage.getItem('username') ? localStorage.getItem('username') : ''
 }
 

@@ -22,7 +22,6 @@ const mapDispatchToProps = (dispatch) => {
 class Navbar extends Component {
   render() {
     const { isAuthenticated, errorMessage, actions } = this.props
-    
     return (
         <div>
             {!isAuthenticated && <Login errorMessage={errorMessage} onLoginClick={ creds => actions.login(creds) } /> }

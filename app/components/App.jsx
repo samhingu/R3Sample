@@ -1,20 +1,33 @@
 import React,{ Component } from 'react'
+import { connect } from 'react-redux'
 
 import About from './About'
 import Header from './Header'
 import Footer from './Footer'
 
-export default class App extends Component {
+
+const mapStateToProps = (state) => {
+    const { isAuthenticated, errorMessage } = state.auth
+    return {
+        isAuthenticated        
+    }
+}
+
+class App extends Component {
   render() {
-    const { children } = this.props
+    const { isAuthenticated, children } = this.props
     return <div>
-        <Header />
-        <main>
-            <div className="wrapper">
+        <Header isAuthenticated={isAuthenticated} />
+        <div className="ui container">
                 { children || <About/> }
-            </div>
-        </main>
-        <Footer />
+        </div>
+        {isAuthenticated && <Footer />}
     </div>
   }
 }
+
+
+
+export default connect(
+    mapStateToProps
+)(App)
